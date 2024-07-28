@@ -6,7 +6,7 @@ The `useDeviceTracking` hook is a custom React hook that provides information ab
 
 ## Installation
 
-1. Create a new file in your project, e.g., `useDeviceTracking.ts` (or `.js` if not using TypeScript).
+1. Create a new file in your project, e.g., `useDeviceTracking.ts` 
 2. Copy the provided hook code into this file.
 3. Make sure to export the hook at the end of the file:
 
@@ -21,7 +21,7 @@ To use the `useDeviceTracking` hook in your React components:
 1. Import the hook into your component file:
 
 ```javascript
-import useDeviceTracking from './path/to/useDeviceTracking';
+import useDeviceTracking from "@/hooks/useDeviceTracking";
 ```
 
 2. Call the hook in your functional component:
@@ -40,6 +40,54 @@ function MyComponent() {
     </div>
   );
 }
+```
+Here's an example of how to use the useDeviceTracking hook in a real-world scenario to open an email based on the OS type:
+
+```javascript
+"use client";
+import React from "react";
+import EmailnotiImg from "../../../public/images/notify.png";
+import { Button } from "../ui/button";
+import useDeviceTracking from "@/hooks/useDeviceTracking";
+
+export const EmailNoti = () => {
+  const deviceInfo = useDeviceTracking();
+
+  const getGmailLink = (): string => {
+    if (deviceInfo.osName === "iOS") {
+      return "googlegmail://";
+    } else if (deviceInfo.osName === "Android") {
+      return "intent://com.google.android.gm#Intent;scheme=https;package=com.google.android.gm;end";
+    } else {
+      return "https://mail.google.com";
+    }
+  };
+
+  const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+    const link = getGmailLink();
+
+    if (deviceInfo.osName === "iOS" || deviceInfo.osName === "Android") {
+      window.location.href = link;
+
+      setTimeout(() => {
+        window.location.href = "https://mail.google.com";
+      }, 2000);
+    } else {
+      window.open(link, "_blank");
+    }
+  };
+
+  return (
+    <div className="flex flex-col items-center gap-y-14 w-full mt-8">
+      <Button className="rounded-2xl" size="lg">
+        <a href={getGmailLink()} onClick={handleClick} className="gmail-button">
+          Open Gmail
+        </a>
+      </Button>
+    </div>
+  );
+};
 ```
 
 ## Hook Return Value
@@ -83,7 +131,7 @@ function ResponsiveComponent() {
 The hook includes TypeScript definitions. If you're using TypeScript, you can import the `DeviceInfo` interface for type checking:
 
 ```typescript
-import useDeviceTracking, { DeviceInfo } from './path/to/useDeviceTracking';
+import useDeviceTracking, { DeviceInfo } from "./path/to/useDeviceTracking";
 ```
 
 ## Contributing
