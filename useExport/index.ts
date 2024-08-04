@@ -32,7 +32,7 @@ const useCsvDownload = () => {
       const blob = new Blob([csvFile], { type: "text/csv;charset=utf-8;" });
       const timestamp = new Date().getTime();
       const randomString = Math.random().toString(36).substring(7);
-      const fileName = `geothings_export_${timestamp}_${randomString}`;
+      const fileName = `file_name_export_${timestamp}_${randomString}`;
       saveAs(blob, `${fileName}.csv`);
     };
 
