@@ -140,4 +140,4 @@ Feel free to submit issues or pull requests if you have suggestions for improvem
 
 ## License
 
-[Insert your chosen license here]
+MIT
