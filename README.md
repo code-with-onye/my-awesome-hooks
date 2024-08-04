@@ -36,5 +36,7 @@ To get started, simply clone the repository or browse the individual hook files.
 
 Your contributions are welcome! If you have a great hook you'd like to share, please read our contribution guidelines and submit a pull request.
 
-Let's make development easier and more efficient together!
 [![Contributors](https://contrib.rocks/image?repo=code-with-onye/30-days-of-Typescript)](https://github.com/code-with-onye/30-days-of-Typescript/graphs/contributors)
+
+Let's make development easier and more efficient together!
+
